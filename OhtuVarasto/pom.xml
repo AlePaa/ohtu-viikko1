@@ -42,9 +42,18 @@
                     <show>private</show>
                     <nohelp>true</nohelp>
                     <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
-
                 </configuration>
             </plugin>
+	    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-assembly-plugins</artifactId>
+		<version>2.2.1</version>
+	        <configuration>
+		    <descriptorRefs>
+			<descriptorRef>jar-with-dependencies</descriptorRef>
+		    </descriptorRefs>
+		</configuration>
+	    </plugin>
         </plugins>
     </build>
 
