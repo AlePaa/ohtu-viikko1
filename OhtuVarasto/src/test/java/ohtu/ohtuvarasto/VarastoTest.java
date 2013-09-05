@@ -105,7 +105,7 @@ public class VarastoTest {
         varasto.lisaaVarastoon(6);
 
         // varastosta ei pitäisi saada enempää tuotteita kuin siellä on
-        assertEquals(6, varasto.otaVarastosta(10), vertailuTarkkuus);
+        assertEquals(5, varasto.otaVarastosta(10), vertailuTarkkuus);
     }
 
     @Test
