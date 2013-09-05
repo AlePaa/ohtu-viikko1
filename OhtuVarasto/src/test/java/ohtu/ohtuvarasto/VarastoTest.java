@@ -66,13 +66,56 @@ public class VarastoTest {
     }
 
     @Test
+    public void lisaaVarastoonPikapoistuminenToimii() {
+        varasto.lisaaVarastoon(5);
+        varasto.lisaaVarastoon(-1);
+
+        // varastossa pitäisi olla tilaa 10 - 5 eli 5
+        assertEquals(5, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisaaVarastoonLisaysToimii() {
+        varasto.lisaaVarastoon(2);
+
+        // varaston saldon pitäisi olla 2
+        assertEquals(2, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisaaVarastoonYliMenevaMaaraTilavuudeksi() {
+        varasto.lisaaVarastoon(11);
+
+        // varastossa ei pitäisi olla tilavuutta enempää tuotteita
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void otaVarastostaKeskeyttaaVaarallaSyotteella() {
+        varasto.lisaaVarastoon(1);
+        varasto.otaVarastosta(-1);
+
+        // varastossa ei piäisi olla enempää tai vähempää tuotteita
+        // kuin lisaaVarastoon()-metodilla on määritelty
+        assertEquals(1, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void varastostaEiOtetaEnempaaKuinSiellaOn() {
+        varasto.lisaaVarastoon(6);
+
+        // varastosta ei pitäisi saada enempää tuotteita kuin siellä on
+        assertEquals(6, varasto.otaVarastosta(10), vertailuTarkkuus);
+    }
+
+    @Test
     public void konstr() {
         varasto = new Varasto(-1);
         varasto = new Varasto(0);
-        varasto = new Varasto(1,1);
-        varasto = new Varasto(1,2);
-        varasto = new Varasto(-1,2);
-        varasto = new Varasto(-1,-1);
+        varasto = new Varasto(1, 1);
+        varasto = new Varasto(1, 2);
+        varasto = new Varasto(-1, 2);
+        varasto = new Varasto(-1, -1);
         varasto.toString();
     }
 }
